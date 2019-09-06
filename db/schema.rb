@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_04_210050) do
+ActiveRecord::Schema.define(version: 2019_09_06_041551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "benches", force: :cascade do |t|
+    t.string "description", null: false
+    t.float "lng", null: false
+    t.float "lat", null: false
+    t.integer "occupancy", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lat"], name: "index_benches_on_lat"
+    t.index ["lng"], name: "index_benches_on_lng"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "rating", default: 3
+    t.string "body", null: false
+    t.integer "bench_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false

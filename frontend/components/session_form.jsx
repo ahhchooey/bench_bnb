@@ -7,40 +7,39 @@ export default class SessionForm extends React.Component {
     this.state = {
       username: "",
       password: ""
-    }
-
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   handleChange(type) {
     return (e) => {
-      this.setState({[type]: e.target.value})
+      this.setState({[type]: e.target.value});
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.processForm(this.state)
-
+    this.props.processForm(this.state);
+    this.setState({username: "", password: ""});
   }
   
   render() {
-    console.log(this.props)
-
     return (
       <div>
-        {(this.props.formType === "signup") ? <h2>signup</h2> : <h2>login</h2>}
+        {(this.props.formType === "signup") ? <h2>Create an Account</h2> : <h2>Login</h2>}
         <form>
-          <label >USERNAME
-            <input type="text" value={this.state.username} onChange={this.handleChange("username")}/>
+          <label >Username:
+            <input type="text" value={this.state.username} 
+              onChange={this.handleChange("username")}/>
           </label>
 
-          <label >PASSWORD
-            <input type="password" value={this.state.password} onChange={this.handleChange("password")} />
+          <label >Password:
+            <input type="password" value={this.state.password} 
+              onChange={this.handleChange("password")} />
           </label>
 
-          <input type="submit" value={(this.props.formType === "signup") ? "signup" : "login"} onClick={this.handleSubmit}/>
+          <input type="submit" value={(this.props.formType === "signup") ? "Sign Up" : "Login"} 
+            onClick={this.handleSubmit}/>
         </form>
       </div>
     )

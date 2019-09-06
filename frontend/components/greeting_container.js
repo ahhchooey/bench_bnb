@@ -1,9 +1,8 @@
 import {connect} from 'react-redux';
-import Greeting from './greeting';
-import logout from '../actions/session_actions'
+import {logout} from '../actions/session_actions.js'
+import Greeting from './greeting.jsx';
 
 const mapStateToProps = (state) => {
-  console.log("state", state)
   return {
     currentUser: state.session.currentUser
   }
